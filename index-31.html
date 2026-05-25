@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>StarMaker Calls</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="app">
+
+  <div id="screen-auth" class="screen active">
+    <div class="auth-bg">
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+    </div>
+    <div class="auth-card">
+      <div class="brand">
+        <div class="brand-icon">✦</div>
+        <h1>StarMaker</h1>
+        <p>Crystal-clear calls across borders</p>
+      </div>
+      <div class="tab-row">
+        <button class="tab active" data-tab="login">Sign In</button>
+        <button class="tab" data-tab="register">Create Account</button>
+      </div>
+      <div id="tab-login" class="tab-content active">
+        <input type="email" id="login-email" placeholder="Email address" autocomplete="email" />
+        <input type="password" id="login-password" placeholder="Password" autocomplete="current-password" />
+        <button id="btn-login" class="btn-primary">Sign In</button>
+      </div>
+      <div id="tab-register" class="tab-content">
+        <input type="text" id="reg-name" placeholder="Display name" />
+        <input type="email" id="reg-email" placeholder="Email address" autocomplete="email" />
+        <input type="password" id="reg-password" placeholder="Password (min 6 chars)" autocomplete="new-password" />
+        <button id="btn-register" class="btn-primary">Create Account</button>
+      </div>
+      <div id="auth-error" class="error-msg"></div>
+    </div>
+  </div>
+
+  <div id="screen-home" class="screen">
+    <header class="topbar">
+      <div class="topbar-brand">✦ StarMaker</div>
+      <div class="topbar-user">
+        <div class="user-badge">
+          <span id="home-display-name"></span>
+          <span class="calling-id-badge" id="home-calling-id"></span>
+        </div>
+        <button id="btn-logout" class="btn-icon" title="Sign out">⏻</button>
+      </div>
+    </header>
+
+    <main class="home-main">
+      <div class="dial-card">
+        <div class="dial-label">Enter Calling ID</div>
+        <div class="dial-input-row">
+          <input type="number" id="dial-input" placeholder="6-digit ID" maxlength="6" />
+          <button id="btn-call" class="btn-call">
+            <span class="call-icon">📞</span>
+          </button>
+        </div>
+        <p class="dial-hint">Share your ID with friends so they can call you</p>
+      </div>
+
+      <div class="my-id-card">
+        <div class="my-id-label">Your Calling ID</div>
+        <div class="my-id-value" id="my-id-display">——</div>
+        <button class="btn-copy" id="btn-copy-id">Copy ID</button>
+      </div>
+    </main>
+
+    <div id="incoming-banner" class="incoming-banner hidden">
+      <div class="incoming-info">
+        <div class="incoming-avatar">👤</div>
+        <div>
+          <div class="incoming-name" id="incoming-caller-name">Unknown</div>
+          <div class="incoming-sub">Incoming call</div>
+        </div>
+      </div>
+      <div class="incoming-actions">
+        <button id="btn-reject" class="btn-reject">✕</button>
+        <button id="btn-accept" class="btn-accept">✓</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="screen-call" class="screen">
+    <div class="call-bg">
+      <div class="call-orb call-orb1"></div>
+      <div class="call-orb call-orb2"></div>
+    </div>
+    <div class="call-header">
+      <div class="call-status-dot" id="call-status-dot"></div>
+      <span id="call-status-label">Connecting…</span>
+    </div>
+    <div class="video-stage">
+      <div id="remote-video-container" class="video-remote">
+        <div class="video-placeholder" id="remote-placeholder">
+          <div class="avatar-ring">👤</div>
+          <span id="remote-user-name">Connecting…</span>
+        </div>
+      </div>
+      <div id="local-video-container" class="video-local"></div>
+    </div>
+    <div class="call-controls">
+      <button id="btn-toggle-mic" class="ctrl-btn" title="Mute">🎤</button>
+      <button id="btn-end-call" class="ctrl-btn ctrl-end" title="End call">📵</button>
+      <button id="btn-toggle-cam" class="ctrl-btn" title="Camera">📷</button>
+    </div>
+    <div class="call-timer" id="call-timer">00:00</div>
+  </div>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="https://download.agora.io/sdk/release/AgoraRTC_N-4.22.0.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
